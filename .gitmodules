@@ -1,0 +1,3 @@
+[submodule "seeker"]
+	path = seeker
+	url = git@github.com:efraimgentil/veritas-seeker.git
