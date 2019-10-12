@@ -1,0 +1,31 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-checker
+    ports:
+    - "5672:5672"
+    - "15672:15672"
+    environment:
+    - RABBITMQ_DEFAULT_USER=rabbit_user
+    - RABBITMQ_DEFAULT_PASS=rabbit_pass
+    volumes:
+    - "./data/rabbitmq:/data"
+  cassandra:
+    image: cassandra
+    container_name: cassandra-checker
+    ports:
+      - "9042:9042"
+    volumes:
+      - "./data/cassandra:/var/lib/cassandra"
+  postgres:
+    image: postgres
+    container_name: postgres-seeker
+    environment:
+      - "POSTGRES_USER=seeker"
+      - "POSTGRES_PASSWORD=postgres"
+      - "POSTGRES_DB=seeker"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./data/postgres:/var/lib/postgresql/data"
